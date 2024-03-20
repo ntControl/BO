@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "MarcoBlueprintFunctionLibrary.generated.h"
 
@@ -16,4 +18,7 @@ class BO_API UMarcoBlueprintFunctionLibrary : public UBlueprintFunctionLibrary
 	
 	UFUNCTION(BlueprintCallable)
 	static bool SphereOverlapActorsForObjectClass(const AActor* ActorContext, const FVector SpherePos, float SphereRadius, const TArray<TEnumAsByte<EObjectTypeQuery> >& ObjectTypes, UClass* ActorClassFilter, const TArray<AActor*>& ActorsToIgnore, TArray<AActor*>& OutActors);
+
+	UFUNCTION(BlueprintCallable)
+	static UNiagaraComponent* SpawnNiagaraSystemAtLocation(const AActor* ActorContext, UNiagaraSystem* SystemTemplate, FVector SpawnLocation, FRotator SpawnRotation, FVector Scale, bool bAutoDestroy, bool bAutoActivate, ENCPoolMethod PoolingMethod, bool bPreCullCheck);
 };
