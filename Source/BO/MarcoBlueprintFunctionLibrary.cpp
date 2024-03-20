@@ -3,6 +3,9 @@
 
 #include "MarcoBlueprintFunctionLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
+
 
 bool UMarcoBlueprintFunctionLibrary::SphereOverlapActorsForObjectClass(const AActor* ActorContext, const FVector SpherePos, float SphereRadius, const TArray<TEnumAsByte<EObjectTypeQuery> >& ObjectTypes, UClass* ActorClassFilter, const TArray<AActor*>& ActorsToIgnore, TArray<AActor*>& OutActors)
 {
@@ -19,4 +22,21 @@ bool UMarcoBlueprintFunctionLibrary::SphereOverlapActorsForObjectClass(const AAc
 
 	return (OutActors.Num() > 0);
 
+}
+
+UNiagaraComponent* UMarcoBlueprintFunctionLibrary::SpawnNiagaraSystemAtLocation(const AActor* ActorContext, UNiagaraSystem* SystemTemplate, FVector SpawnLocation, FRotator SpawnRotation, FVector Scale, bool bAutoDestroy, bool bAutoActivate, ENCPoolMethod PoolingMethod, bool bPreCullCheck)
+{
+	UWorld* World = ActorContext->GetWorld();
+
+	FFXSystemSpawnParameters SpawnParams;
+	SpawnParams.WorldContextObject = World;
+	SpawnParams.SystemTemplate = SystemTemplate;
+	SpawnParams.Location = SpawnLocation;
+	SpawnParams.Rotation = SpawnRotation;
+	SpawnParams.Scale = Scale;
+	SpawnParams.bAutoDestroy = bAutoDestroy;
+	SpawnParams.bAutoActivate = bAutoActivate;
+	SpawnParams.PoolingMethod = ToPSCPoolMethod(PoolingMethod);
+	SpawnParams.bPreCullCheck = bPreCullCheck;
+	return UNiagaraFunctionLibrary::SpawnSystemAtLocationWithParams(SpawnParams);
 }
