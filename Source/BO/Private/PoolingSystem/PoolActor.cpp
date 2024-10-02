@@ -4,7 +4,6 @@
 #include "PoolingSystem/PoolActor.h"
 #include "PoolingSystem/Poolable.h"
 #include "PoolingSystem/PoolingSubsystem.h"
-#include "Dialogs/Dialogs.h"
 
 // Sets default values
 APoolActor::APoolActor()
