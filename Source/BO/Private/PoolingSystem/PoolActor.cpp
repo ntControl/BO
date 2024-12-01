@@ -44,7 +44,7 @@ AActor* APoolActor::GetActorItem(FString Name)
 		for (int i = 0; i < Elem.Value.Actors.Num(); i = i + 1)
 		{
 			AActor* ActorItem = Elem.Value.Actors[i];
-			if (ActorItem && !IPoolable::Execute_GetActive(ActorItem))
+			if (ActorItem != nullptr && !IPoolable::Execute_GetActive(ActorItem))
 			{
 				return ActorItem;
 			}
