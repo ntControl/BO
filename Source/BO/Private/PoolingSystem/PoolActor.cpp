@@ -44,7 +44,7 @@ AActor* APoolActor::GetActorItem(FString Name)
 		for (int i = 0; i < Elem.Value.Actors.Num(); i = i + 1)
 		{
 			AActor* ActorItem = Elem.Value.Actors[i];
-			if (!IPoolable::Execute_GetActive(ActorItem))
+			if (ActorItem != nullptr && !IPoolable::Execute_GetActive(ActorItem))
 			{
 				return ActorItem;
 			}
@@ -63,6 +63,7 @@ UObject* APoolActor::GetObjectItem(FString Name)
 		}
 		for (int i = 0; i < Elem.Value.Objects.Num(); i = i + 1)
 		{
+			// probably null exceptions
 			UObject* ObjectItem = Elem.Value.Objects[i];
 			IPoolable* PoolItem = Cast<IPoolable>(ObjectItem);
 			if (PoolItem && !PoolItem->GetActive())
