@@ -72,3 +72,15 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+# Fmod
+Content/FMOD/Banks/*
+Content/FMOD/Buses/*
+Content/FMOD/Events/*
+Content/FMOD/PrivateIntegrationData/*
+
+Plugins/FMODStudio/Docs/*
+Plugins/FMODStudio/Intermediate/*
+Plugins/FMODStudio/Resources/*
+
+Plugins/FMODStudioNiagara/Intermediate/*
