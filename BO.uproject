@@ -28,11 +28,11 @@
 		},
 		{
 			"Name": "FMODStudioNiagara",
-			"Enabled": false
+			"Enabled": true
 		},
 		{
 			"Name": "FMODStudio",
-			"Enabled": false
+			"Enabled": true
 		}
 	]
 }
