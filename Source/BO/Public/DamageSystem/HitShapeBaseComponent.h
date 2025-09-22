@@ -7,7 +7,11 @@
 #include "Damageble.h"
 #include "HitShapeBaseComponent.generated.h"
 
+#define FLOAT_ACCEPTANCE 0.001f
+
 DECLARE_LOG_CATEGORY_EXTERN(LogDamageSystem, Log, All)
+
+class UPrimitiveComponent;
 
 UCLASS(Abstract, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BO_API UHitShapeBaseComponent : public USceneComponent, public IDamageble
@@ -22,7 +26,7 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	bool CheckAndUpdateCollisionProfile(class UPrimitiveComponent* ShapeComponent, const FCollisionProfileName& InCollisionProfile);
+	bool CheckAndUpdateCollisionProfile(UPrimitiveComponent* ShapeComponent, const FCollisionProfileName& InCollisionProfile);
 
 public:	
 	// Called every frame

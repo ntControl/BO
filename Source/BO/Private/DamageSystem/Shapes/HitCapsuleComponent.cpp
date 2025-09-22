@@ -7,10 +7,10 @@
 UHitCapsuleComponent::UHitCapsuleComponent()
 {
 	CapsuleComponent = CreateDefaultSubobject<UCapsuleComponent>(TEXT("HitBox"));
-	CapsuleComponent->SetupAttachment(this);
 
 	if (CapsuleComponent)
 	{
+		CapsuleComponent->SetupAttachment(this);
 		CapsuleRadius = CapsuleComponent->GetUnscaledCapsuleRadius();
 		CapsuleHalfHeight = CapsuleComponent->GetUnscaledCapsuleHalfHeight();
 	}
@@ -23,13 +23,13 @@ void UHitCapsuleComponent::PostEditChangeProperty(FPropertyChangedEvent& Propert
 		return;
 	}
 
-	if (CapsuleComponent->GetUnscaledCapsuleHalfHeight() != CapsuleHalfHeight)
+	if (FMath::Abs(CapsuleComponent->GetUnscaledCapsuleHalfHeight() - CapsuleHalfHeight) > FLOAT_ACCEPTANCE)
 	{
 		CapsuleComponent->SetCapsuleHalfHeight(CapsuleHalfHeight);
 		return;
 	}
 
-	if (CapsuleComponent->GetUnscaledCapsuleRadius() != CapsuleRadius)
+	if (FMath::Abs(CapsuleComponent->GetUnscaledCapsuleRadius() - CapsuleRadius) > FLOAT_ACCEPTANCE)
 	{
 		CapsuleComponent->SetCapsuleRadius(CapsuleRadius);
 	}

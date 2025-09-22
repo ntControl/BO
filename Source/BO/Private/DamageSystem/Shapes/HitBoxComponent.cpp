@@ -7,10 +7,10 @@
 UHitBoxComponent::UHitBoxComponent()
 {
 	BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("HitBox"));
-	BoxComponent->SetupAttachment(this);
 
 	if (BoxComponent)
 	{
+		BoxComponent->SetupAttachment(this);
 		BoxExtents = BoxComponent->GetUnscaledBoxExtent();
 	}
 }
@@ -25,7 +25,7 @@ void UHitBoxComponent::PostEditChangeProperty(FPropertyChangedEvent& PropertyCha
 
 	FVector OldBoxExtents = BoxComponent->GetUnscaledBoxExtent();
 
-	if (OldBoxExtents.X != BoxExtents.X || OldBoxExtents.Y != BoxExtents.Y || OldBoxExtents.Z != BoxExtents.Z)
+	if (FMath::Abs(OldBoxExtents.X - BoxExtents.X) > FLOAT_ACCEPTANCE || FMath::Abs(OldBoxExtents.Y - BoxExtents.Y) > FLOAT_ACCEPTANCE || FMath::Abs(OldBoxExtents.Z - BoxExtents.Z) > FLOAT_ACCEPTANCE)
 	{
 		BoxComponent->SetBoxExtent(BoxExtents);
 	}

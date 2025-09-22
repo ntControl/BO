@@ -7,10 +7,10 @@
 UHitSphereComponent::UHitSphereComponent()
 {
 	SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("HitSphere"));
-	SphereComponent->SetupAttachment(this);
 
 	if (SphereComponent)
 	{
+		SphereComponent->SetupAttachment(this);
 		SphereRadius = SphereComponent->GetUnscaledSphereRadius();
 	}
 }
@@ -23,7 +23,7 @@ void UHitSphereComponent::PostEditChangeProperty(FPropertyChangedEvent& Property
 		return;
 	}
 
-	if (SphereComponent->GetUnscaledSphereRadius() != SphereRadius)
+	if (FMath::Abs(SphereComponent->GetUnscaledSphereRadius() - SphereRadius) > FLOAT_ACCEPTANCE)
 	{
 		SphereComponent->SetSphereRadius(SphereRadius);
 	}

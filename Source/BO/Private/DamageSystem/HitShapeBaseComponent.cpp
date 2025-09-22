@@ -51,6 +51,7 @@ void UHitShapeBaseComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 void UHitShapeBaseComponent::I_TakeDamage_Implementation(FDamageInfo DamageInfo)
 {
 	DamageInfo.Damage = DamageInfo.Damage * DamageMultiplier;
+	DamageInfo.HitBodyPart = BodyPart;
 
 	Execute_I_TakeDamage(GetOwner(), DamageInfo);
 }
@@ -68,4 +69,5 @@ bool UHitShapeBaseComponent::CheckAndUpdateCollisionProfile(UPrimitiveComponent*
 	}
 	return false;
 }
+
 
