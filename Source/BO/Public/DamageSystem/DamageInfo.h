@@ -6,23 +6,39 @@
 #include "DamageClass.h"
 #include "Element.h"
 #include "BodyPart.h"
+#include "DamageResponse.h"
 #include "DamageInfo.generated.h"
 
-USTRUCT(BlueprintType)
+USTRUCT(BlueprintType, Blueprintable)
 struct FDamageInfo
 {
 	GENERATED_BODY()
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float Damage;
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EDamageClass DamageClass;
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	EDamageResponse DamageResponse;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EElement Element;
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EBodyPart HitBodyPart;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bShouldDamageInvincible;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bCanBeBlocked;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bCanBeParried;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bShouldForceInterrupt;
 };
 

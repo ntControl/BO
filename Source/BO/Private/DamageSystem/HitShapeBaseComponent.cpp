@@ -48,12 +48,12 @@ void UHitShapeBaseComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	// ...
 }
 
-void UHitShapeBaseComponent::I_TakeDamage_Implementation(FDamageInfo DamageInfo)
+void UHitShapeBaseComponent::I_TakeDamage_Implementation(FDamageReturn& DamageReturn, FDamageInfo DamageInfo, const AActor* DamageCauser)
 {
 	DamageInfo.Damage = DamageInfo.Damage * DamageMultiplier;
 	DamageInfo.HitBodyPart = BodyPart;
 
-	Execute_I_TakeDamage(GetOwner(), DamageInfo);
+	return Execute_I_TakeDamage(GetOwner(), DamageReturn, DamageInfo, DamageCauser);
 }
 
 bool UHitShapeBaseComponent::CheckAndUpdateCollisionProfile(UPrimitiveComponent* ShapeComponent, const FCollisionProfileName& InCollisionProfile)

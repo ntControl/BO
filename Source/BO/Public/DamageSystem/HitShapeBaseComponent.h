@@ -33,7 +33,7 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION(BlueprintCallable)
-	void I_TakeDamage_Implementation(FDamageInfo DamageInfo) override;
+	void I_TakeDamage_Implementation(FDamageReturn& DamageReturn, FDamageInfo DamageInfo, const AActor* DamageCauser) override;
 
 
 protected:
