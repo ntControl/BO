@@ -34,3 +34,8 @@ void UHitCapsuleComponent::PostEditChangeProperty(FPropertyChangedEvent& Propert
 		CapsuleComponent->SetCapsuleRadius(CapsuleRadius);
 	}
 }
+
+void UHitCapsuleComponent::SetCollisionEnabled(ECollisionEnabled::Type Value)
+{
+	CapsuleComponent->SetCollisionEnabled(Value);
+}

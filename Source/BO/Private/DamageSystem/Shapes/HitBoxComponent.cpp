@@ -15,6 +15,11 @@ UHitBoxComponent::UHitBoxComponent()
 	}
 }
 
+void UHitBoxComponent::SetCollisionEnabled(ECollisionEnabled::Type Value)
+{
+	BoxComponent->SetCollisionEnabled(Value);
+}
+
 #if WITH_EDITOR
 void UHitBoxComponent::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
 {

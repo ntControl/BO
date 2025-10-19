@@ -19,6 +19,8 @@ public:
 
 	void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 
+	void SetCollisionEnabled(ECollisionEnabled::Type Value) override;
+
 private:
 	UPROPERTY()
 	class UBoxComponent* BoxComponent;

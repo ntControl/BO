@@ -33,6 +33,9 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION(BlueprintCallable)
+	virtual void SetCollisionEnabled(ECollisionEnabled::Type Value);
+
+	UFUNCTION(BlueprintCallable)
 	void I_TakeDamage_Implementation(FDamageReturn& DamageReturn, FDamageInfo DamageInfo, const AActor* DamageCauser) override;
 
 

@@ -15,6 +15,11 @@ UHitSphereComponent::UHitSphereComponent()
 	}
 }
 
+void UHitSphereComponent::SetCollisionEnabled(ECollisionEnabled::Type Value)
+{
+	SphereComponent->SetCollisionEnabled(Value);
+}
+
 #if WITH_EDITOR
 void UHitSphereComponent::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
 {

@@ -70,4 +70,8 @@ bool UHitShapeBaseComponent::CheckAndUpdateCollisionProfile(UPrimitiveComponent*
 	return false;
 }
 
+void UHitShapeBaseComponent::SetCollisionEnabled(ECollisionEnabled::Type Value)
+{
+
+}
 
