@@ -87,7 +87,7 @@ void APoolActor::GenerateActors()
 		FActorArray NewActorArray = FActorArray();
 		for (int i = 0; i < ActorData.Count; i = i + 1)
 		{
-			AActor* NewActor = GetWorld()->SpawnActor(ActorData.Class);
+			AActor* NewActor = GetWorld()->SpawnActor(ActorData.Class, &GetActorTransform());
 			IPoolable::Execute_OnDeactivation(NewActor);
 			NewActorArray.Actors.Add(NewActor);
 		}
