@@ -33,45 +33,32 @@ void APoolActor::Tick(float DeltaTime)
 
 }
 
-AActor* APoolActor::GetActorItem(FString Name)
+AActor* APoolActor::GetActorItem(TSubclassOf<AActor> Class)
 {
-	for(TPair<FString, FActorArray> Elem : ActorPools)
+
+	FActorArray* ActorArray = ActorPools.Find(Class);
+	for (AActor* CurrentActor : ActorArray->Actors)
 	{
-		if (Elem.Key != Name)
+		if (CurrentActor != nullptr && !IPoolable::Execute_GetActive(CurrentActor))
 		{
-			continue;
-		}
-		for (int i = 0; i < Elem.Value.Actors.Num(); i = i + 1)
-		{
-			AActor* ActorItem = Elem.Value.Actors[i];
-			if (ActorItem != nullptr && !IPoolable::Execute_GetActive(ActorItem))
-			{
-				return ActorItem;
-			}
+			return CurrentActor;
 		}
 	}
+	
 	return nullptr;
 }
 
-UObject* APoolActor::GetObjectItem(FString Name)
+UObject* APoolActor::GetObjectItem(TSubclassOf<UObject> Class)
 {
-	for (TPair<FString, FObjectArray> Elem : ObjectPools)
+	FObjectArray* ObjectArray = ObjectPools.Find(Class);
+	for (UObject* CurrentObject : ObjectArray->Objects)
 	{
-		if (Elem.Key != Name)
+		if (CurrentObject != nullptr && !IPoolable::Execute_GetActive(CurrentObject))
 		{
-			continue;
-		}
-		for (int i = 0; i < Elem.Value.Objects.Num(); i = i + 1)
-		{
-			// probably null exceptions
-			UObject* ObjectItem = Elem.Value.Objects[i];
-			IPoolable* PoolItem = Cast<IPoolable>(ObjectItem);
-			if (PoolItem && !PoolItem->GetActive())
-			{
-				return ObjectItem;
-			}
+			return CurrentObject;
 		}
 	}
+
 	return nullptr;
 }
 
@@ -81,7 +68,7 @@ void APoolActor::GenerateActors()
 	{
 		if (!ActorData.Class->ImplementsInterface(UPoolable::StaticClass()))
 		{
-			UE_LOG(LogTemp, Error, TEXT("Actor named \"%s\" does not implement Poolable interface"), *ActorData.Name);
+			UE_LOG(LogTemp, Error, TEXT("Actor named \"%s\" does not implement Poolable interface"), *ActorData.Class);
 			continue;
 		}
 		FActorArray NewActorArray = FActorArray();
@@ -91,7 +78,7 @@ void APoolActor::GenerateActors()
 			IPoolable::Execute_OnDeactivation(NewActor);
 			NewActorArray.Actors.Add(NewActor);
 		}
-		ActorPools.Add(ActorData.Name, NewActorArray);
+		ActorPools.Add(ActorData.Class, NewActorArray);
 	}
 }
 
@@ -101,7 +88,7 @@ void APoolActor::GenerateObjects()
 	{
 		if (!ObjectData.Class->ImplementsInterface(UPoolable::StaticClass()))
 		{
-			UE_LOG(LogTemp, Error, TEXT("Object named \"%s\" does not implement Poolable interface"), *ObjectData.Name);
+			UE_LOG(LogTemp, Error, TEXT("Object named \"%s\" does not implement Poolable interface"), *ObjectData.Class);
 			continue;
 		}
 		FObjectArray NewObjectArray = FObjectArray();
@@ -115,7 +102,7 @@ void APoolActor::GenerateObjects()
 			}
 			NewObjectArray.Objects.Add(ConstructedObject);
 		}
-		ObjectPools.Add(ObjectData.Name, NewObjectArray);
+		ObjectPools.Add(ObjectData.Class, NewObjectArray);
 	}
 }
 

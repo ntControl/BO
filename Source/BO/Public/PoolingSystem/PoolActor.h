@@ -34,9 +34,6 @@ struct FActorPoolData
 	TSubclassOf<AActor> Class;
 
 	UPROPERTY(EditAnywhere)
-	FString Name;
-
-	UPROPERTY(EditAnywhere)
 	int Count;
 };
 
@@ -47,9 +44,6 @@ struct FObjectPoolData
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UObject> Class;
-
-	UPROPERTY(EditAnywhere)
-	FString Name;
 
 	UPROPERTY(EditAnywhere)
 	int Count;
@@ -76,20 +70,20 @@ protected:
 
 protected:
 	UPROPERTY()
-	TMap<FString, FActorArray> ActorPools;
+	TMap<TSubclassOf<AActor>, FActorArray> ActorPools;
 
 	UPROPERTY()
-	TMap<FString, FObjectArray> ObjectPools;
+	TMap<TSubclassOf<UObject>, FObjectArray> ObjectPools;
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION()
-	virtual AActor* GetActorItem(FString Name) override;
+	virtual AActor* GetActorItem(TSubclassOf<AActor> Class) override;
 
 	UFUNCTION()
-	virtual UObject* GetObjectItem(FString Name) override;
+	virtual UObject* GetObjectItem(TSubclassOf<UObject> Class) override;
 
 private:
 	void GenerateActors();
