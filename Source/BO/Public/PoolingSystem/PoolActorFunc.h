@@ -23,8 +23,8 @@ class BO_API IPoolActorFunc
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 	UFUNCTION()
-	virtual AActor* GetActorItem(FString Name);
+	virtual AActor* GetActorItem(TSubclassOf<AActor> Class);
 
 	UFUNCTION()
-	virtual UObject* GetObjectItem(FString Name);
+	virtual UObject* GetObjectItem(TSubclassOf<UObject> Class);
 };

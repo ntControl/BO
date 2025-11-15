@@ -4,11 +4,11 @@
 #include "PoolingSystem/PoolingSubsystem.h"
 #include "PoolingSystem/PoolActorFunc.h"
 
-AActor* UPoolingSubsystem::GetActorItem(FString Name)
+AActor* UPoolingSubsystem::GetActorItem(TSubclassOf<AActor> ActorClass)
 {
 	if (Pool)
 	{
-		AActor* PooledActor = Pool->GetActorItem(Name);
+		AActor* PooledActor = Pool->GetActorItem(ActorClass);
 		if (PooledActor)
 		{
 			return PooledActor;
@@ -17,11 +17,11 @@ AActor* UPoolingSubsystem::GetActorItem(FString Name)
 	return nullptr;
 }
 
-UObject* UPoolingSubsystem::GetObjectItem(FString Name)
+UObject* UPoolingSubsystem::GetObjectItem(TSubclassOf<UObject> ObjectClass)
 {
 	if (Pool)
 	{
-		UObject* PooledObject = Pool->GetObjectItem(Name);
+		UObject* PooledObject = Pool->GetObjectItem(ObjectClass);
 		if (PooledObject)
 		{
 			return PooledObject;
