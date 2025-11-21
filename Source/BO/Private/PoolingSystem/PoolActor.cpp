@@ -95,11 +95,7 @@ void APoolActor::GenerateObjects()
 		for (int i = 0; i < ObjectData.Count; i = i + 1)
 		{
 			UObject* ConstructedObject = NewObject<UObject>(this, ObjectData.Class);
-			IPoolable* Poolable = Cast<IPoolable>(ConstructedObject);
-			if (Poolable)
-			{
-				Poolable->OnDeactivation();
-			}
+			IPoolable::Execute_OnDeactivation(ConstructedObject);
 			NewObjectArray.Objects.Add(ConstructedObject);
 		}
 		ObjectPools.Add(ObjectData.Class, NewObjectArray);
