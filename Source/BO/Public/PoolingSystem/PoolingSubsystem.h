@@ -22,7 +22,7 @@ public:
 	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "ActorClass"))
 	AActor* GetActorItem(TSubclassOf<AActor> ActorClass);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "ObjectClass"))
 	UObject* GetObjectItem(TSubclassOf<UObject> ObjectClass);
 
 	UFUNCTION()
