@@ -37,6 +37,11 @@ AActor* APoolActor::GetActorItem(TSubclassOf<AActor> Class)
 {
 
 	FActorArray* ActorArray = ActorPools.Find(Class);
+	if (!ActorArray)
+	{
+		return nullptr;
+	}
+
 	for (AActor* CurrentActor : ActorArray->Actors)
 	{
 		if (CurrentActor != nullptr && !IPoolable::Execute_GetActive(CurrentActor))
@@ -51,6 +56,11 @@ AActor* APoolActor::GetActorItem(TSubclassOf<AActor> Class)
 UObject* APoolActor::GetObjectItem(TSubclassOf<UObject> Class)
 {
 	FObjectArray* ObjectArray = ObjectPools.Find(Class);
+	if (!ObjectArray)
+	{
+		return nullptr;
+	}
+
 	for (UObject* CurrentObject : ObjectArray->Objects)
 	{
 		if (CurrentObject != nullptr && !IPoolable::Execute_GetActive(CurrentObject))
