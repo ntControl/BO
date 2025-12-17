@@ -33,6 +33,9 @@ struct FDamageInfo
 	FVector HitLocation;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector HitImpulse;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bShouldDamageInvincible;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
