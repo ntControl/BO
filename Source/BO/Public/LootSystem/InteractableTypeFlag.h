@@ -15,7 +15,8 @@ enum class E_InteractableTypeFlag : uint8
 	Medikit = 1,
 	PrimaryAmmo = 2,
 	SecondaryAmmo = 4,
-	TertiaryAmmo = 8
+	TertiaryAmmo = 8,
+	Fuelkit = 16
 };
 
 ENUM_CLASS_FLAGS(E_InteractableTypeFlag)
