@@ -19,11 +19,11 @@ private:
 	TScriptInterface<IPoolActorFunc> Pool;
 
 public:
-	UFUNCTION(BlueprintCallable)
-	AActor* GetActorItem(FString Name);
+	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "ActorClass"))
+	AActor* GetActorItem(TSubclassOf<AActor> ActorClass);
 
-	UFUNCTION(BlueprintCallable)
-	UObject* GetObjectItem(FString Name);
+	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "ObjectClass"))
+	UObject* GetObjectItem(TSubclassOf<UObject> ObjectClass);
 
 	UFUNCTION()
 	void InitPool(AActor* PoolActor);

@@ -5,12 +5,12 @@
 
 // Add default functionality here for any IPoolActorFunc functions that are not pure virtual.
 
-AActor* IPoolActorFunc::GetActorItem(FString Name)
+AActor* IPoolActorFunc::GetActorItem(TSubclassOf<AActor> Class)
 {
 	return nullptr;
 }
 
-UObject* IPoolActorFunc::GetObjectItem(FString Name)
+UObject* IPoolActorFunc::GetObjectItem(TSubclassOf<UObject> Class)
 {
 	return nullptr;
 }
