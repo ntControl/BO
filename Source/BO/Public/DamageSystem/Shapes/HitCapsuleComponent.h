@@ -17,7 +17,11 @@ class BO_API UHitCapsuleComponent : public UHitShapeBaseComponent
 public:
 	UHitCapsuleComponent();
 
+#if WITH_EDITOR
+
 	void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
+
+#endif
 
 	void SetCollisionEnabled(ECollisionEnabled::Type Value) override;
 
