@@ -56,6 +56,8 @@ void UHitShapeBaseComponent::I_TakeDamage_Implementation(FDamageReturn& DamageRe
 	return Execute_I_TakeDamage(GetOwner(), DamageReturn, DamageInfo, DamageCauser);
 }
 
+#if WITH_EDITOR
+
 bool UHitShapeBaseComponent::CheckAndUpdateCollisionProfile(UPrimitiveComponent* ShapeComponent, const FCollisionProfileName& InCollisionProfile)
 {
 	if (ShapeComponent)
@@ -69,6 +71,8 @@ bool UHitShapeBaseComponent::CheckAndUpdateCollisionProfile(UPrimitiveComponent*
 	}
 	return false;
 }
+
+#endif
 
 void UHitShapeBaseComponent::SetCollisionEnabled(ECollisionEnabled::Type Value)
 {
