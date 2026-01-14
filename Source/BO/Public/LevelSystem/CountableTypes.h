@@ -11,7 +11,7 @@ UENUM(BlueprintType)
 enum class ECountableTypes : uint8
 {
 	None = 0 UMETA(DisplayName = "None"),
-	Token = 1 UMETA(DisplayName = "Token"),
-	Kill = 2 UMETA(DisplayName = "Kill"),
-	Powerfuel = 3 UMETA(DisplayName = "Powerfuel")
+	Kill = 1 UMETA(DisplayName = "Kill"),
+	Powerfuel = 2 UMETA(DisplayName = "Powerfuel"),
+	Token = 3 UMETA(DisplayName = "Token")
 };
