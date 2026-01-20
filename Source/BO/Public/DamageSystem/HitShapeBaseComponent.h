@@ -26,7 +26,11 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+#if WITH_EDITOR
+
 	bool CheckAndUpdateCollisionProfile(UPrimitiveComponent* ShapeComponent, const FCollisionProfileName& InCollisionProfile);
+
+#endif
 
 public:	
 	// Called every frame
