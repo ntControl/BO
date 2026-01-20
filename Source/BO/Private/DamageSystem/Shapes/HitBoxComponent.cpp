@@ -21,6 +21,7 @@ void UHitBoxComponent::SetCollisionEnabled(ECollisionEnabled::Type Value)
 }
 
 #if WITH_EDITOR
+
 void UHitBoxComponent::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
 {
 	if (CheckAndUpdateCollisionProfile(BoxComponent, CollisionProfile))
@@ -35,4 +36,5 @@ void UHitBoxComponent::PostEditChangeProperty(FPropertyChangedEvent& PropertyCha
 		BoxComponent->SetBoxExtent(BoxExtents);
 	}
 }
+
 #endif
