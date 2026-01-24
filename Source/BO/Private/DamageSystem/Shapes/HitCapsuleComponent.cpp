@@ -16,6 +16,8 @@ UHitCapsuleComponent::UHitCapsuleComponent()
 	}
 }
 
+#if WITH_EDITOR
+
 void UHitCapsuleComponent::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
 {
 	if (CheckAndUpdateCollisionProfile(CapsuleComponent, CollisionProfile))
@@ -34,6 +36,8 @@ void UHitCapsuleComponent::PostEditChangeProperty(FPropertyChangedEvent& Propert
 		CapsuleComponent->SetCapsuleRadius(CapsuleRadius);
 	}
 }
+
+#endif
 
 void UHitCapsuleComponent::SetCollisionEnabled(ECollisionEnabled::Type Value)
 {

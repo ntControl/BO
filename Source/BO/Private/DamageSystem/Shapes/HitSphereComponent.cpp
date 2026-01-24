@@ -21,6 +21,7 @@ void UHitSphereComponent::SetCollisionEnabled(ECollisionEnabled::Type Value)
 }
 
 #if WITH_EDITOR
+
 void UHitSphereComponent::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
 {
 	if (CheckAndUpdateCollisionProfile(SphereComponent, CollisionProfile))
@@ -33,4 +34,5 @@ void UHitSphereComponent::PostEditChangeProperty(FPropertyChangedEvent& Property
 		SphereComponent->SetSphereRadius(SphereRadius);
 	}
 }
+
 #endif
