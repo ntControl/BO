@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Subsystems/GameInstanceSubsystem.h"
+#include "Subsystems/WorldSubsystem.h"
 #include "Countable.h"
 #include "CountableTypes.h"
 #include "LevelSubsystem.generated.h"
@@ -14,7 +14,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FInternalCountableUpdatedSignature, 
  * 
  */
 UCLASS()
-class BO_API ULevelSubsystem : public UGameInstanceSubsystem
+class BO_API ULevelSubsystem : public UWorldSubsystem
 {
 	GENERATED_BODY()
 
@@ -37,4 +37,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void RegisterOnCountableUpdatedEvent(ECountableTypes Type, FCountableUpdatedSignature InEvent);
+
+	UFUNCTION(BlueprintCallable)
+	void ResetCountables();
 };
