@@ -59,3 +59,7 @@ void ULevelSubsystem::RegisterOnCountableUpdatedEvent(ECountableTypes Type, FCou
 
 	UpdateEvent->Add(InEvent);
 }
+
+void ULevelSubsystem::ResetCountables()
+{
+}
