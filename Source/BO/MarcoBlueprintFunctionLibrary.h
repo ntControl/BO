@@ -21,4 +21,16 @@ class BO_API UMarcoBlueprintFunctionLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable)
 	static UNiagaraComponent* SpawnNiagaraSystemAtLocation(const AActor* ActorContext, UNiagaraSystem* SystemTemplate, FVector SpawnLocation, FRotator SpawnRotation, FVector Scale, bool bAutoDestroy, bool bAutoActivate, ENCPoolMethod PoolingMethod, bool bPreCullCheck);
+
+	/**
+	 * Ritorna True se ci sono ancora shader in fase di compilazione asincrona in sottofondo.
+	 */
+	UFUNCTION(BlueprintPure, Category = "Loading Screen|Shader")
+	static bool IsCompilingShaders();
+
+	/**
+	 * Ritorna il numero esatto di job/shader rimasti da compilare.
+	 */
+	UFUNCTION(BlueprintPure, Category = "Loading Screen|Shader")
+	static int32 GetNumRemainingShaderJobs();
 };

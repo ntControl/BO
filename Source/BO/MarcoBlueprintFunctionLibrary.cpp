@@ -4,6 +4,7 @@
 #include "MarcoBlueprintFunctionLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "NiagaraComponent.h"
+#include "ShaderCompiler.h" // Modulo per la gestione degli shader
 #include "NiagaraFunctionLibrary.h"
 
 
@@ -39,4 +40,22 @@ UNiagaraComponent* UMarcoBlueprintFunctionLibrary::SpawnNiagaraSystemAtLocation(
 	SpawnParams.PoolingMethod = ToPSCPoolMethod(PoolingMethod);
 	SpawnParams.bPreCullCheck = bPreCullCheck;
 	return UNiagaraFunctionLibrary::SpawnSystemAtLocationWithParams(SpawnParams);
+}
+
+bool UMarcoBlueprintFunctionLibrary::IsCompilingShaders()
+{
+	if (GShaderCompilingManager)
+	{
+		return GShaderCompilingManager->IsCompiling(); // Ritorna True se sta ancora compilando
+	}
+	return false;
+}
+
+int32 UMarcoBlueprintFunctionLibrary::GetNumRemainingShaderJobs()
+{
+	if (GShaderCompilingManager)
+	{
+		return GShaderCompilingManager->GetNumRemainingJobs(); // Ritorna il conteggio esatto
+	}
+	return 0;
 }
